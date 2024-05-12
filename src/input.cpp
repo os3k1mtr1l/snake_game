@@ -17,15 +17,23 @@ void process_input(Engine& gameEngine, Game& snake) //main input function
                     break;
 
                 case SDLK_UP:
+                    snake.player.horizontal = false;
+                    snake.player.direction = -1;
                     break;
                 
                 case SDLK_DOWN:
+                    snake.player.horizontal = false;
+                    snake.player.direction = 1;
                     break;
                 
                 case SDLK_LEFT:
+                    snake.player.horizontal = true;
+                    snake.player.direction = -1;
                     break;
                 
                 case SDLK_RIGHT:
+                    snake.player.horizontal = true;
+                    snake.player.direction = 1;
                     break;
             }
             break;

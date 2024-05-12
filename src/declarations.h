@@ -2,11 +2,12 @@
 #define DECLARATIONS_H
 
 #include<iostream>
-#include<cmath>
 #include<SDL2/SDL.h>
 #include<SDL2/SDL_image.h>
 #include<SDL2/SDL_ttf.h>
 #include"constants.h"
+#include<cstdlib>
+#include<ctime>
 
 typedef struct playerstats
 {
@@ -14,20 +15,29 @@ typedef struct playerstats
     float y;
     float width;
     float height;
-    int direction_X = 1;
-    int direction_Y = 1;
-    bool moves = false;
+    int direction;
+    bool horizontal;
+    int speed;
 
-    playerstats(float _x=0, float _y=0, float _w=0, float _h=0) : x(_x), y(_y), width(_w), height(_h) {}
+    playerstats() = default;
+
+    playerstats(float _x, float _y, float _w, float _h) : x(_x), y(_y), width(_w), height(_h) {}
 } Player;
 
 class Game
 {
     private:
 
+
     public:
-    Player player;
-    int score;
+        Player player;
+        SDL_Rect apple;
+        unsigned score;
+
+        Game();
+
+        void newApple();     
+        void addScore(); 
 };
 
 class Renderer
@@ -74,7 +84,7 @@ class Engine
 //Game loop functions
 void setup(Game& snake);
 void process_input(Engine& gameEngine, Game& snake);
-void update(Engine& gameEngine);
+void update(Engine& gameEngine, Game& snake);
 void render(Renderer& renderer, Engine& gameEngine, const Game& snake);
 
 #endif
