@@ -16,7 +16,7 @@ int main(int argc, char* argv[])
         while(gameEngine.is_running)
         {
             process_input(gameEngine, snake);
-            update(gameEngine);
+            update(gameEngine, snake);
             render(renderer, gameEngine, snake);
         }
 
